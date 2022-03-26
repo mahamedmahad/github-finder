@@ -1,9 +1,10 @@
+import GithubUSer from "./components/github-user";
 
 
 function App() {
   return (
-    <div className="App">
-
+    <div className=" ">
+        <GithubUSer/>
     </div>
   );
 }
