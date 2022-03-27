@@ -26,7 +26,7 @@
     @apply  pl-3 pr-4 sm:pl-6 sm:pr-8 py-1  space-y-2 border-r-[1px] border-solid border-black h-12 last:border-0
   }
   .text {
-    @apply  font-bold text-[13px] text-center dark:text-[#5A5A5A]
+    @apply  font-bold text-[13px] text-center dark:text-[#C1C1C1]
   }
   .sosial-icon {
    @apply  w-5 h-5
@@ -36,7 +36,7 @@
   }
 
   body {
-    @apply dark:bg-[#1F2639] transition duration-150 ease-in
+    @apply dark:bg-[#1F2639] transition-all
   }
 
 }

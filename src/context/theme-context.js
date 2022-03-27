@@ -8,6 +8,8 @@ import React, {createContext, useEffect, useState} from 'react';
  */
 const getInitialTheme = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
+        /* This is checking if there is a local storage item named 'current-theme'. If there is, it returns the value of
+        that item. If there isn't, it returns null. */
         const storedPrefs = window.localStorage.getItem('current-theme');
         if (typeof storedPrefs === 'string') {
             return storedPrefs;
@@ -15,15 +17,18 @@ const getInitialTheme = () => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             return 'dark';
         }
+
+
     }
     return 'light';
+
 };
 
 //
 export const ThemeContext = createContext();
 
 const ThemeProvider = ({initialTheme, children}) => {
-    const [theme, setTheme] = useState(initialTheme)
+    const [theme, setTheme] = useState(getInitialTheme)
 
     /**
      * If the current theme is dark, remove the light class from the root element and add the dark class. If the current
@@ -34,8 +39,8 @@ const ThemeProvider = ({initialTheme, children}) => {
         const root = window.document.documentElement;
         const isDark = existing === 'dark';
 
-        root.classList.remove(isDark ? 'light' : 'dark');
         root.classList.add(existing);
+        root.classList.remove(isDark ? 'light' : 'dark');
 
         localStorage.setItem('current-theme', existing);
     };
@@ -46,9 +51,9 @@ const ThemeProvider = ({initialTheme, children}) => {
 
 
     /* renders whenever the theme changes. */
-    useEffect(()=> {
+    useEffect(() => {
         checkTheme(theme);
-        console.log(theme);
+
     }, [theme])
 
     return (
