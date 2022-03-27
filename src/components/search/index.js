@@ -4,7 +4,7 @@ import {SearchIcon} from "@heroicons/react/outline";
 
 const Search = ({searchTerm, setSearchTerm}) => {
     return (
-        <div className={"flex items-center  my-5 content bg-[#F6F6F6] " +
+        <div className={"flex items-center  my-5 content bg-[#F6F6F6] dark:bg-[#3D4653] dark:text-[#F9F9F9]  " +
             "rounded sm:space-x-2"}>
             {/***Search Icon***/}
             <SearchIcon
@@ -15,7 +15,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
             <input
                 placeholder={"Search Github @user...."}
                 type={"text"}
-                className ="flex-1 h-full outline-0 sm:px-5 py-3 bg-transparent text-base sm:text-lg
+                className ="flex-1 h-full outline-0 sm:px-5 py-3 bg-transparent text-base
                 "
             />
             <button className="btn-search">
