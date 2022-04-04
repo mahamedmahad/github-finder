@@ -1,12 +1,17 @@
 import React from 'react';
 
-//icon
-import {LocationMarkerIcon} from "@heroicons/react/solid";
-import TwitterIcon from '../../images/twitter.png';
-import {LinkIcon} from "@heroicons/react/outline";
+//component
+import SosialInfo from "../sosialInfo";
 
-const Result = ({user}) => {
+//icons
+import {LocationMarkerIcon, LinkIcon} from "@heroicons/react/solid";
+import Twitter from '../../images/twitter.png'
+import GithubIcon from '../../images/github.png';
 
+import {useResultContext} from "../../context/result-context";
+
+const Result = () => {
+    const {user} = useResultContext()
     //get year,month and date
     /**
      * Given a date object, return a string with the date in the format: `day month year`
@@ -22,7 +27,7 @@ const Result = ({user}) => {
         return ` ${day} ${month} ${year}`;
     }
 
-    console.log(get(user.created_at));
+    //console.log(get(user.created_at));
 
     return (
         <div className="content bg-[#F6F6F6] rounded dark:bg-[#3D4653] dark:text-white">
@@ -78,43 +83,19 @@ const Result = ({user}) => {
                     </div>
                 </div>
 
-                {/**Location and sosial**/}
-                <div className="mt-5 p-3  flex items-start justify-between flex-wrap max-w-full mx-auto w-[400px]">
-                    {/**Location*/}
-                    <div className="sosial-info  ">
-                        <LocationMarkerIcon className="sosial-icon text-[#B0B0B0]"/>
-                        {user.location === null ? (
-                            <span className="text-sm">Not Available</span>
-                        ) : (
-                            <span className="text-sm">{user.location}</span>
-                        )}
+                <div className="mt-5 p-2  flex items-start  justify-between flex-wrap w-3/4">
+                    {user.location !== null ? (
+                        <SosialInfo Icon={LocationMarkerIcon} title={user.location}/>
 
-                    </div>
-                    {/**Twitter***/}
-                    <div className="sosial-info ">
-                        <img
-                            src={TwitterIcon}
-                            alt="Twitter"
-                            className="sosial-icon object-fit"
-                        />
-                        {user.twitter_username === null ? (
-                            <span className="text-sm">Not Available</span>
-                        ) : (
-                            <span className="text-sm">{user.twitter_username}</span>
-                        )}
-
-                    </div>
-                    {/****URL**/}
-                    <div className="sosial-info ">
-                        <LinkIcon className="sosial-icon text-[#B0B0B0]"/>
-                        {user.blog === null ? (
-                                <a className="text-sm hover:underline" href="#">Not Available</a>
-                            )
-                            : (
-                                <a className="text-sm hover:underline" href="#">{user.blog}</a>
-
-                            )}
-                    </div>
+                        ): null}
+                    {user.twitter_username !== null ? (
+                    <SosialInfo image={Twitter} title={user.twitter_username}/>
+                    ): null
+                    }
+                    {user.blog !== null ? (
+                        <SosialInfo Icon={LinkIcon} title={user.blog}/>
+                    ):null}
+                    <SosialInfo Icon={LinkIcon} title={user.html_url} />
                 </div>
 
             </div>
